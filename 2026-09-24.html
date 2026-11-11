@@ -1,0 +1,432 @@
+<title>しほ売上別添削会</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Klee+One:wght@600&display=swap');
+
+  :root{
+    --cream:#FBF3E7;
+    --sand:#F3E4CE;
+    --sage:#BBCEAE;
+    --sage-deep:#57764C;
+    --lavender:#CCC2E3;
+    --lavender-deep:#6B579B;
+    --blush:#F5C9C1;
+    --blush-deep:#C1594A;
+    --ink:#3B3226;
+    --ink-soft:#7A6E5C;
+    --coral:#E2634A;
+    --line:rgba(59,50,38,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;
+    text-wrap:balance;
+    letter-spacing:.01em;
+  }
+  .eb{ font-family:"Fredoka","Zen Maru Gothic",sans-serif; }
+
+  .col{ max-width:720px; margin:0 auto; padding:0 24px; }
+
+  .wave{ width:100%; line-height:0; }
+  .wave svg{ display:block; width:100%; height:20px; }
+
+  .hero{
+    position:relative;
+    background:var(--lavender);
+    padding:64px 0 46px;
+    overflow:hidden;
+  }
+  .hero .blob{ position:absolute; border-radius:50%; opacity:.55; }
+  .hero .blob.b1{ width:220px; height:220px; background:var(--blush); top:-70px; right:-40px; }
+  .hero .blob.b2{ width:150px; height:150px; background:var(--sage); bottom:-50px; left:-30px; }
+  .hero .blob.b3{ width:90px; height:90px; background:var(--sand); top:30px; left:58%; }
+  .hero-inner{ position:relative; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"Fredoka",sans-serif; font-weight:600; font-size:12.5px; letter-spacing:.12em;
+    color:#fff; background:var(--coral); padding:6px 14px; border-radius:999px; margin-bottom:20px;
+  }
+  h1{ font-size:clamp(30px,7vw,44px); font-weight:900; margin:0 0 14px; color:var(--ink); }
+  .hero p.lede{ font-size:16.5px; color:var(--ink); opacity:.82; max-width:52ch; margin:0 0 22px; }
+  .meta-row{ display:flex; flex-wrap:wrap; gap:8px 14px; font-size:13px; }
+  .meta-row span{ background:rgba(255,255,255,.6); padding:5px 12px; border-radius:999px; font-weight:500; }
+  .meta-row strong{ font-weight:700; }
+
+  .intro-wrap{ background:var(--cream); padding:36px 0 8px; }
+  .intro-note{
+    display:flex; gap:14px; align-items:flex-start;
+    padding:18px 20px; background:#fff; border-radius:18px;
+    box-shadow:0 4px 16px rgba(59,50,38,.08);
+  }
+  .intro-note .mark{
+    flex:none; width:34px; height:34px; border-radius:50%;
+    background:var(--sand); display:flex; align-items:center; justify-content:center;
+    font-family:"Klee One",cursive; font-size:17px; color:var(--coral);
+  }
+  .intro-note p{ margin:0; font-size:14px; color:var(--ink-soft); }
+
+  .toc-wrap{ background:var(--cream); padding:24px 0 46px; }
+  .toc-title{ font-size:12.5px; font-weight:700; letter-spacing:.1em; color:var(--ink-soft); margin:0 0 14px; }
+  .toc{ display:flex; flex-wrap:wrap; gap:10px; }
+  .toc a{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:var(--ink);
+    background:#fff; border-radius:999px; padding:9px 16px 9px 8px; font-size:13.5px; font-weight:500;
+    box-shadow:0 2px 8px rgba(59,50,38,.07); transition:transform .15s ease;
+  }
+  .toc a:hover, .toc a:focus-visible{ transform:translateY(-2px); }
+  .toc .dot{
+    width:22px;height:22px;border-radius:50%; display:flex;align-items:center;justify-content:center;
+    font-family:"Fredoka",sans-serif; font-weight:700; font-size:11px; color:#fff; flex:none;
+  }
+
+  section.entry{ position:relative; padding:54px 0 60px; }
+  .entry-inner{ position:relative; }
+
+  .icon-badge{
+    width:56px;height:56px; border-radius:50%; background:rgba(255,255,255,.65);
+    display:flex;align-items:center;justify-content:center; margin-bottom:16px;
+  }
+  .entry-head{ margin-bottom:6px; }
+  .entry-head .kicker{
+    font-family:"Fredoka",sans-serif; font-weight:600; font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; opacity:.7;
+  }
+  .entry-head h2{ font-size:23px; font-weight:900; margin:2px 0 6px; }
+
+  .label{ font-size:11.5px; font-weight:700; letter-spacing:.09em; color:var(--ink); opacity:.6; margin:26px 0 10px; }
+  .consult{ font-size:15px; color:var(--ink); background:rgba(255,255,255,.55); padding:14px 18px; border-radius:14px; }
+
+  ul.advice{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  ul.advice li{ position:relative; padding-left:22px; font-size:15px; }
+  ul.advice li::before{ content:"✦"; position:absolute; left:0; top:1px; font-size:13px; color:var(--coral); }
+
+  .quote{
+    margin-top:22px; display:inline-block; max-width:100%; background:#fff; border-radius:16px;
+    padding:16px 20px; box-shadow:0 6px 18px rgba(59,50,38,.1); transform:rotate(-1deg);
+  }
+  .quote p{ margin:0; font-family:"Klee One",cursive; font-size:16.5px; color:var(--ink); line-height:1.7; }
+  .quote p::before{ content:"「"; }
+  .quote p::after{ content:"」"; }
+
+  .next-actions{ margin-top:20px; background:rgba(255,255,255,.7); border-radius:14px; padding:16px 20px 18px; }
+  .next-actions .label{ margin:0 0 8px; opacity:.75; }
+  ul.actions{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+  ul.actions li{ position:relative; padding-left:24px; font-size:14px; color:var(--ink); }
+  ul.actions li::before{
+    content:"✓"; position:absolute; left:0; top:0; width:16px; height:16px; border-radius:50%;
+    background:var(--coral); color:#fff; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center;
+  }
+
+  .aside{ margin-top:18px; padding:14px 18px; border:2px dashed rgba(59,50,38,.25); border-radius:14px; }
+  .aside .label{ margin-top:0; }
+  .aside ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; font-size:13.5px; color:var(--ink-soft); }
+  .aside ul li b{ color:var(--ink); font-weight:700; }
+
+  footer{
+    background:var(--cream); padding:36px 0 56px; font-size:12.5px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  a{ color:inherit; }
+  :focus-visible{ outline:2px solid var(--coral); outline-offset:2px; }
+
+  @media (max-width:520px){ .hero{ padding:52px 0 38px; } }
+</style>
+
+<div class="hero">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+  <div class="col hero-inner">
+    <span class="eyebrow">RMC ｜ Rebel Muses Craft</span>
+    <h1>しほ売上別添削会</h1>
+    <p class="lede">ブランドの方向性・新商品・価格設定・リール構成について、5組がそれぞれ相談した回をまとめました。相談内容とアドバイス、次のアクションまで整理しています。</p>
+    <div class="meta-row">
+      <span><strong>開催</strong>：2026年9月24日（木）22:00〜</span>
+      <span><strong>形式</strong>：売上別ペア添削会（Discord通話）</span>
+      <span><strong>参加</strong>：全5組</span>
+      <span><strong>担当</strong>：しほ先生</span>
+    </div>
+  </div>
+</div>
+<div class="wave" style="background:var(--lavender)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--cream)"/></svg></div>
+
+<div class="intro-wrap">
+  <div class="col">
+    <div class="intro-note">
+      <span class="mark">✎</span>
+      <p>この回は添削というより「ブランドの軸」や「次の一歩」を一緒に考える相談会でした。ジャンルはガラス・天然石・陶器・紙もの・アクセサリーとバラバラですが、共通して出てきたのは「誰に何を届けたいか」を先に決める、という話でした。</p>
+    </div>
+  </div>
+</div>
+
+<div class="toc-wrap">
+  <div class="col">
+    <p class="toc-title">登場した5組（タップで移動）</p>
+    <nav class="toc">
+      <a href="#e1"><span class="dot" style="background:var(--sage-deep)">01</span> miyuki-さん</a>
+      <a href="#e2"><span class="dot" style="background:var(--blush-deep)">02</span> ななこさん</a>
+      <a href="#e3"><span class="dot" style="background:#B8862F">03</span> 香織さん</a>
+      <a href="#e4"><span class="dot" style="background:var(--lavender-deep)">04</span> もえさん</a>
+      <a href="#e5"><span class="dot" style="background:var(--sage-deep)">05</span> ドリーミィガールさん</a>
+      <a href="#guide"><span class="dot" style="background:var(--lavender-deep)">💡</span> 質問準備ガイド</a>
+    </nav>
+  </div>
+</div>
+
+<section class="entry" id="e1" style="background:var(--sage); color:var(--ink);">
+  <div class="col entry-inner">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3c3 3 6 6.8 6 10a6 6 0 1 1-12 0c0-3.2 3-7 6-10Z" stroke="var(--sage-deep)" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 15.5c0 1.4 1.1 2.3 2.3 2.3" stroke="var(--sage-deep)" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </div>
+    <div class="entry-head">
+      <span class="kicker">01 ／ ガラス系アクセサリー</span>
+      <h2>miyuki-さん（Solvé）</h2>
+    </div>
+    <p class="label">相談</p>
+    <p class="consult">ブランドの雰囲気を前回から少し変えて「格好いい系」の方向に進めたい。新作の五色ガラス玉アクセサリーの価格設定と、AI着画を使うことについて意見が欲しい。</p>
+    <p class="label">アドバイス</p>
+    <ul class="advice">
+      <li>透明感・ガラスのような質感を軸に、自然の情景（鉱石、景色など）をテーマにしたコンセプトを言葉にしていく。</li>
+      <li>AI着画は「雰囲気を伝える写真」として使うのはまったく違和感がない。Instagramの世界観づくりに使い、商品ページ（購入の決め手になる場所）では本物の商品写真を見せる、という使い分けでいく。</li>
+      <li>新作の五色アクセサリーは、10月3日の販売会でまず2,800円で出して反応を見る。価格は様子を見ながら少しずつ上げていき、次回の販売会では3,000円超えも検討する。</li>
+      <li>Minneからベースへのページ移行は、今のフォーマットを維持したまま進めて大丈夫。</li>
+    </ul>
+    <div class="quote"><p>雰囲気写真はAI着画でよくて、商品ページは本物を見せる</p></div>
+    <div class="next-actions">
+      <p class="label">次のアクション</p>
+      <ul class="actions">
+        <li>自然の情景・鉱石をテーマにしたブランドコンセプトを考え、プロフィールや発信に反映する</li>
+        <li>10/3の販売会で五色アクセサリーを2,800円で販売し、反応を確認する</li>
+        <li>Minne→ベースのページ移行を、世界観に合わせて準備する</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave" style="background:var(--sage)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--blush)"/></svg></div>
+
+<section class="entry" id="e2" style="background:var(--blush); color:var(--ink);">
+  <div class="col entry-inner">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3 20 9l-3 11H7L4 9Z" stroke="var(--blush-deep)" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 3v6M4 9h16M9 9l-2 11M15 9l2 11" stroke="var(--blush-deep)" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <div class="entry-head">
+      <span class="kicker">02 ／ 天然石アクセサリー</span>
+      <h2>ななこさん（@puinoie）</h2>
+    </div>
+    <p class="label">相談</p>
+    <p class="consult">天然石アクセサリーのターゲット層とブランドの方向性が定まっていない。チャーム付き・なしの両方を扱っているが、このままでいいのか。フォロワーが18人と少ない中でベース作りを進めるべきか。</p>
+    <p class="label">アドバイス</p>
+    <ul class="advice">
+      <li>商品を「お守り的な効果」を重視するものと「アクセサリーとしての美しさ」を重視するもの、どちらを軸にするかを先に決める。</li>
+      <li>「どんな人に届けたいか」「その人にどうなってもらいたいか」を定義してから、商品ラインナップ（チャームの有無など）を設計する順番にする。</li>
+      <li>チャーム付き・なしが混在するとブランドの軸がぶれるので、分けて展開するのがおすすめ。</li>
+      <li>フォロワーが少ない今の段階でも、作業時間が確保できるならベースへの移行を進めて問題ない。</li>
+    </ul>
+    <div class="quote"><p>どんな人に届けたいかを決めてから、商品を作る</p></div>
+    <div class="next-actions">
+      <p class="label">次のアクション</p>
+      <ul class="actions">
+        <li>ブランドの軸（お守り系／ファッション系）を明確にし、商品ラインナップを組み直す</li>
+        <li>Minneからベースへの移行を進める</li>
+      </ul>
+    </div>
+    <div class="aside">
+      <p class="label">チャットでの反応</p>
+      <ul>
+        <li><b>myun._Yuka</b>：「私が10代の時に天然石のブレスつけてる時は、チャーム無しを選んでました」</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave" style="background:var(--blush)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--sand)"/></svg></div>
+
+<section class="entry" id="e3" style="background:var(--sand); color:var(--ink);">
+  <div class="col entry-inner">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M8 3h8l1 5c.6 3-1 5-1 8a4 4 0 0 1-8 0c0-3-1.6-5-1-8Z" stroke="#B8862F" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 3h8" stroke="#B8862F" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </div>
+    <div class="entry-head">
+      <span class="kicker">03 ／ 陶器アクセサリー</span>
+      <h2>香織さん（Atelier K）</h2>
+    </div>
+    <p class="label">相談</p>
+    <p class="consult">プロフィールのコンセプトを「日常華やかに」に直してリールの認知は伸びたが、直近の販売会では商品力・ベネフィットを伝えるリールが足りなかった。来月用のベネフィットリール台本を見てほしい。再生回数も伸び悩んでいる。</p>
+    <p class="label">アドバイス</p>
+    <ul class="advice">
+      <li>冬季ジュエリーのベネフィットリール台本を参考に、陶器そのものの重さ・重厚感を訴求ポイントとして言葉にする。</li>
+      <li>再生回数を上げるには、映像素材を短くし、冒頭で2〜3個の素材をパンパンと素早く切り替える構成にする。</li>
+    </ul>
+    <div class="quote"><p>重さや素材の質感も、ちゃんと言葉にすればベネフィットになる</p></div>
+    <div class="next-actions">
+      <p class="label">次のアクション</p>
+      <ul class="actions">
+        <li>重さ・重厚感を訴求するベネフィットリールを1本作る</li>
+        <li>リール冒頭の素材切り替えを短く・パンパンに直す</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave" style="background:var(--sand)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--lavender)"/></svg></div>
+
+<section class="entry" id="e4" style="background:var(--lavender); color:var(--ink);">
+  <div class="col entry-inner">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 10v4a1.5 1.5 0 0 0 1.5 1.5H7l4.5 3.3a.8.8 0 0 0 1.3-.6V6.8a.8.8 0 0 0-1.3-.6L7 9.5H5.5A1.5 1.5 0 0 0 4 11Z" stroke="var(--lavender-deep)" stroke-width="1.4" stroke-linejoin="round"/><path d="M17 9a5 5 0 0 1 0 6" stroke="var(--lavender-deep)" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+    <div class="entry-head">
+      <span class="kicker">04 ／ アクセサリー・運営</span>
+      <h2>もえさん（Aireivy）</h2>
+    </div>
+    <p class="label">相談</p>
+    <p class="consult">商品紹介リールの配信スケジュールと、販売訴求リールの割合をどう組むかを相談したい。フィードの見せ方についても意見が欲しい。</p>
+    <p class="label">アドバイス</p>
+    <ul class="advice">
+      <li>商品紹介リールのスケジュールは、今の2週間サイクルから3週間に伸ばす。</li>
+      <li>新作の公開タイミングは理想的には販売会の1週間前。土曜日公開でも問題ない。</li>
+      <li>フィードの写真が商品にフォーカスしすぎているので、関係のない写真や「一息つく」ような写真を挟んで世界観を作ると、商品写真がより目立つようになる。</li>
+      <li>よくある質問への回答は、ストーリーの質問ボックスなどを使って拾っていく。</li>
+    </ul>
+    <div class="quote"><p>関係のない「一息つく」写真を挟むと、商品写真がより目立つ</p></div>
+    <div class="next-actions">
+      <p class="label">次のアクション</p>
+      <ul class="actions">
+        <li>リールのスケジュールを3週間サイクルに調整する</li>
+        <li>フィードに世界観を伝える写真を増やす</li>
+        <li>よくある質問をストーリーで拾っていく運用を始める</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave" style="background:var(--lavender)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--sage)"/></svg></div>
+
+<section class="entry" id="e5" style="background:var(--sage); color:var(--ink);">
+  <div class="col entry-inner">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4Z" stroke="var(--sage-deep)" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke="var(--sage-deep)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="entry-head">
+      <span class="kicker">05 ／ 紙もの・レターグッズ</span>
+      <h2>ドリーミィガールさん</h2>
+    </div>
+    <p class="label">相談</p>
+    <p class="consult">前回、商品を絞って訴求した結果、全商品が完売した報告。今回は新商品「お裾分けファイル」（色々な作家の紙が入ったメモ詰め合わせファイル）のリール台本について相談したい。</p>
+    <p class="label">アドバイス</p>
+    <ul class="advice">
+      <li>「お裾分けファイル」のリールでは、中身（いろいろな作家さんの紙が収納されていること）と使い方（手紙を書く時・置き手紙にする時など）を具体的に説明する。</li>
+      <li>「手紙を書く」という大きな目的の一歩手前にある「紙を選ぶ楽しみ・ストックしておく」という価値を伝えると、ニュアンスが伝わりやすくなる。</li>
+      <li>10月9日の販売会に向けて、新作発表はオーダー会（10月1日〜3日）が終わった10月4日以降に行う。</li>
+    </ul>
+    <div class="quote"><p>「手紙を書きたくなった時に、すぐ使える」を一歩手前で伝える</p></div>
+    <div class="next-actions">
+      <p class="label">次のアクション</p>
+      <ul class="actions">
+        <li>お裾分けファイルの中身・使い方を説明するリール台本を作成する</li>
+        <li>新作発表は10/4以降、10/9の販売会に向けて準備する</li>
+      </ul>
+    </div>
+    <div class="aside">
+      <p class="label">チャットでの反応（「お裾分けファイル」って何？）</p>
+      <ul>
+        <li><b>myun._Yuka</b>：「シール帳の手紙ver.って感じですかね？」</li>
+        <li><b>miyuki-さん</b>：「お気に入りを溜めておけるみたいな、？」</li>
+        <li><b>もえさん</b>：「『お裾分け』だから交換する用かと思ってました！」</li>
+        <li><b>tsuki</b>：「誰かにお手紙を書きたくなる時に使えるメモ詰め合わせファイル…とかだと違いますか？」</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave" style="background:var(--sage)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--cream)"/></svg></div>
+
+<div style="background:var(--cream); padding-top:8px;">
+<div class="col" style="padding-top:20px;">
+  <h2 style="font-size:24px;font-weight:900;margin:0 0 6px;">全体を通して共通していたポイント</h2>
+  <p style="font-size:14px;color:var(--ink-soft);margin:0 0 26px;">ジャンルは違っても、5組に共通して出てきたアドバイスをまとめました。</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div style="background:#fff;border-radius:16px;padding:20px 18px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:13px;color:var(--sage-deep);margin-bottom:10px;">A</div>
+      <h3 style="font-size:15.5px;margin:0 0 6px;font-weight:700;">ターゲット・訴求の軸を先に決める</h3>
+      <p style="font-size:13.5px;color:var(--ink-soft);margin:0;">「どんな人に届けたいか」「どうなってもらいたいか」を先に決めてから、商品ラインナップや発信内容を組み立てる。</p>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:20px 18px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:13px;color:var(--blush-deep);margin-bottom:10px;">B</div>
+      <h3 style="font-size:15.5px;margin:0 0 6px;font-weight:700;">新作はまず様子見価格でテスト</h3>
+      <p style="font-size:13.5px;color:var(--ink-soft);margin:0;">いきなり高値をつけず、まず試しやすい価格で反応を見て、そこから少しずつ値上げしていく。</p>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:20px 18px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:13px;color:#B8862F;margin-bottom:10px;">C</div>
+      <h3 style="font-size:15.5px;margin:0 0 6px;font-weight:700;">AIは「使い分け」で活用する</h3>
+      <p style="font-size:13.5px;color:var(--ink-soft);margin:0;">雰囲気を伝える写真にはAI着画を使い、購入の決め手になる商品ページでは本物の写真を見せる。</p>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:20px 18px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--lavender);display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:13px;color:var(--lavender-deep);margin-bottom:10px;">D</div>
+      <h3 style="font-size:15.5px;margin:0 0 6px;font-weight:700;">リールは冒頭のテンポが肝</h3>
+      <p style="font-size:13.5px;color:var(--ink-soft);margin:0;">素材を短く、冒頭でパンパンと切り替える。重さや質感などの特徴は、言葉にしてはじめてベネフィットになる。</p>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:20px 18px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:13px;color:var(--sage-deep);margin-bottom:10px;">E</div>
+      <h3 style="font-size:15.5px;margin:0 0 6px;font-weight:700;">フィードには「余白」を混ぜる</h3>
+      <p style="font-size:13.5px;color:var(--ink-soft);margin:0;">商品写真だけで固めず、関係のない写真や一息つける写真を挟むと、商品そのものがより目立つ。</p>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:20px 18px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:13px;color:var(--blush-deep);margin-bottom:10px;">F</div>
+      <h3 style="font-size:15.5px;margin:0 0 6px;font-weight:700;">新商品は「使うシーン」を見せる</h3>
+      <p style="font-size:13.5px;color:var(--ink-soft);margin:0;">商品の説明だけでなく、実際にどう使うのか・どんな時に手に取るのかを見せると伝わりやすい。</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wave" style="background:var(--cream)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--lavender)"/></svg></div>
+
+<section class="entry" id="guide" style="background:var(--lavender); color:var(--ink);">
+  <div class="col entry-inner">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 1 3 9c-.7.5-1 1-1 2v1H10v-1c0-1-.3-1.5-1-2a5 5 0 0 1 3-9Z" stroke="var(--lavender-deep)" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 18.5h4M10.7 20.5h2.6" stroke="var(--lavender-deep)" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </div>
+    <div class="entry-head">
+      <span class="kicker">添削会をもっと活かすために</span>
+      <h2>質問準備ガイド 📝</h2>
+    </div>
+    <p class="consult">添削会で気になるのは、抽象的な質問が多いこと。「アカウント全体を見てアドバイスがあれば教えてください」だと、せっかくの時間がもったいない…！事前に「解像度の高い質問」を1つ準備してもらえると、当日持ち帰れるものがぐっと増えます。</p>
+
+    <p class="label">NG例（もったいない質問）</p>
+    <div style="margin-top:2px;background:rgba(255,255,255,.55);border-radius:14px;padding:16px 20px;display:flex;align-items:flex-start;gap:12px;">
+      <span style="flex:none;width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">✕</span>
+      <p style="margin:0;font-size:15px;color:var(--ink-soft);text-decoration:line-through;text-decoration-color:rgba(59,50,38,.35);">アカウント全体を見てアドバイスがあれば教えてください</p>
+    </div>
+
+    <p class="label">OK例（解像度の高い質問）</p>
+    <ul class="advice">
+      <li>「コンセプトをこう決めたのですが、それに合ったプロフィール文になっていますか？」</li>
+      <li>「こういう世界観で行こうと思っているのですが、もっとこうした方がいいところはありますか？」</li>
+      <li>「写真の色味は黄みが良いのか青みが良いのか、どっちが良いですか？」</li>
+    </ul>
+
+    <div class="aside">
+      <p class="label">事前に準備してほしいこと</p>
+      <ul>
+        <li><b>今日はこれを聞こう</b>：事前に「これを解決しよう」を1つ決めておく</li>
+        <li><b>その場で深掘り</b>：回答から生まれた疑問も、その場で聞いて持ち帰る</li>
+        <li><b>正解はひとつじゃない</b>：「どちらが良いですか」系の質問は、講師の経験に基づく「私だったらこうする」が答えになります。あらかじめご了承ください🙏</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="wave" style="background:var(--lavender)"><svg viewBox="0 0 1440 20" preserveAspectRatio="none"><path d="M0,10 Q60,20 120,10 T240,10 T360,10 T480,10 T600,10 T720,10 T840,10 T960,10 T1080,10 T1200,10 T1320,10 T1440,10 L1440,20 L0,20 Z" fill="var(--cream)"/></svg></div>
+
+<footer>
+  <div class="col" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px;">
+    <span>しほ売上別添削会</span>
+    <span>RMC 内共有用</span>
+  </div>
+</footer>

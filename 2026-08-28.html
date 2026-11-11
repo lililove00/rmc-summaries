@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>売上別添削会まとめ｜0〜5万円・5〜10万円クラス</title>
+<style>
+  :root{
+    --bg:#fbf6f3;
+    --card:#ffffff;
+    --ink:#3a2e2c;
+    --sub:#7c6d69;
+    --pink:#e0879a;
+    --pink-soft:#faeaee;
+    --green:#5fa88a;
+    --green-soft:#e7f4ee;
+    --amber:#e0a044;
+    --amber-soft:#fdf1e0;
+    --blue:#6f93c9;
+    --blue-soft:#eaf1fb;
+    --line:#ece1de;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Hiragino Sans","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.8;
+  }
+  a{color:inherit;}
+
+  .hero{
+    background:linear-gradient(135deg,#f3d9de 0%,#f8ece7 55%,#eef0f6 100%);
+    padding:60px 24px 44px;
+    text-align:center;
+  }
+  .hero .date{
+    letter-spacing:.08em;
+    font-size:13px;
+    color:var(--sub);
+    margin-bottom:12px;
+  }
+  .hero h1{
+    font-size:clamp(26px,5vw,40px);
+    margin:0 0 14px;
+    line-height:1.5;
+  }
+  .hero p.lead{
+    max-width:620px;
+    margin:0 auto;
+    color:var(--sub);
+    font-size:14.5px;
+  }
+  .hero .chips{
+    margin-top:22px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+  }
+  .chip{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:6px 14px;
+    font-size:13px;
+    color:var(--ink);
+  }
+
+  nav{
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    padding:16px 12px;
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    font-size:13.5px;
+    flex-wrap:wrap;
+    z-index:10;
+  }
+  nav a{
+    text-decoration:none;
+    color:var(--sub);
+    padding:4px 2px;
+    border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  nav a:hover{border-bottom-color:var(--pink);color:var(--ink);}
+
+  section{
+    max-width:880px;
+    margin:0 auto;
+    padding:52px 24px;
+  }
+  section + section{border-top:1px solid var(--line);}
+  .eyebrow{
+    font-size:13px;
+    color:var(--pink);
+    letter-spacing:.1em;
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  h2{font-size:23px;margin:0 0 26px;}
+
+  /* 共通ポイント */
+  .point-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
+  }
+  .point-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+  }
+  .point-card .emoji{font-size:26px;margin-bottom:8px;display:block;}
+  .point-card h3{margin:0 0 6px;font-size:15px;}
+  .point-card p{margin:0;color:var(--sub);font-size:13.5px;}
+
+  /* タイムライン */
+  .timeline{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:28px 0 0;
+    justify-content:center;
+  }
+  .timeline .step{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:13px;
+    text-align:center;
+    min-width:96px;
+  }
+  .timeline .step .n{color:var(--pink);font-weight:700;font-size:12px;}
+  .timeline .arrow{align-self:center;color:var(--sub);font-size:16px;}
+
+  /* 相談者カード */
+  .person{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:0;
+    margin-bottom:28px;
+    overflow:hidden;
+  }
+  .person-head{
+    padding:22px 26px 18px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .person-head .name{
+    font-size:12.5px;
+    color:var(--sub);
+    margin-bottom:4px;
+  }
+  .person-head h3{
+    margin:0;
+    font-size:19px;
+  }
+  .status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--blue-soft);
+    color:var(--blue);
+    border-radius:999px;
+    padding:6px 14px;
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .person-body{padding:20px 26px 26px;}
+  .theme{
+    font-size:14px;
+    color:var(--sub);
+    background:#faf5f2;
+    border-left:3px solid var(--pink);
+    padding:10px 14px;
+    border-radius:6px;
+    margin-bottom:20px;
+  }
+  .gp-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:18px;
+  }
+  @media (max-width:640px){
+    .gp-grid{grid-template-columns:1fr;}
+  }
+  .gp-box{
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .gp-box.good{background:var(--green-soft);}
+  .gp-box.improve{background:var(--amber-soft);}
+  .gp-box .label{
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .gp-box.good .label{color:var(--green);}
+  .gp-box.improve .label{color:var(--amber);}
+  .gp-box ul{margin:0;padding-left:18px;font-size:13.5px;}
+  .gp-box li{margin-bottom:6px;}
+
+  .next-action{
+    background:var(--pink-soft);
+    border-radius:12px;
+    padding:14px 18px;
+    font-size:13.5px;
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+  }
+  .next-action .tag{
+    flex:0 0 auto;
+    font-size:13px;
+    font-weight:700;
+    color:var(--pink);
+    white-space:nowrap;
+  }
+
+  /* チェックリスト */
+  .checklist{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  .checklist li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 16px;
+    font-size:14px;
+  }
+  .checklist .box{
+    flex:0 0 auto;
+    width:18px;height:18px;
+    border-radius:5px;
+    border:2px solid var(--pink);
+    margin-top:2px;
+  }
+
+  footer{
+    text-align:center;
+    padding:36px 24px 56px;
+    font-size:12.5px;
+    color:var(--sub);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="date">2026.08.28（金）22:00〜 開催</div>
+  <h1>売上別添削会まとめ 📝<br>【0〜5万円・5〜10万円クラス】</h1>
+  <p class="lead">7名の相談内容を「良かった点」と「改善アドバイス」に分けて整理しました。プロフィール・世界観・リール構成・撮影方法まで、それぞれの課題と次の一手をまとめています。</p>
+  <div class="chips">
+    <span class="chip">🐶 Solvé</span>
+    <span class="chip">💅 きょうこ</span>
+    <span class="chip">🧵 hashug</span>
+    <span class="chip">👕 chika</span>
+    <span class="chip">💅 きゃさりん</span>
+    <span class="chip">🎨 misa</span>
+    <span class="chip">🎀 クルール</span>
+  </div>
+</div>
+
+<nav>
+  <a href="#summary">要点</a>
+  <a href="#cases">相談別</a>
+  <a href="#checklist">次回チェック</a>
+</nav>
+
+<section id="summary">
+  <div class="eyebrow">今日の共通ポイント</div>
+  <h2>7名に共通していた5つの気づき 💡</h2>
+  <div class="point-grid">
+    <div class="point-card">
+      <span class="emoji">🪧</span>
+      <h3>「何屋さん」かを一言で</h3>
+      <p>世界観が整っていても、プロフィールに商品カテゴリーが無いと伝わらない。名前・肩書きに軸を持たせる。</p>
+    </div>
+    <div class="point-card">
+      <span class="emoji">📅</span>
+      <h3>販売スケジュールはテンプレ化</h3>
+      <p>いつ買えるかの情報は毎投稿にコピペでOK。カレンダーか個別告知かは好みで使い分けて良い。</p>
+    </div>
+    <div class="point-card">
+      <span class="emoji">🎥</span>
+      <h3>撮影は三脚固定＋編集</h3>
+      <p>手持ち撮影の揺れや、撮って出しの白飛びは三脚固定・露出/彩度編集でワンランク改善できる。</p>
+    </div>
+    <div class="point-card">
+      <span class="emoji">🗣️</span>
+      <h3>こだわり・ストーリーを語る</h3>
+      <p>生地選びや制作の裏側、工程時間などを語ると、価格や世界観への納得感が生まれる。</p>
+    </div>
+    <div class="point-card">
+      <span class="emoji">🔍</span>
+      <h3>「認知」と「教育」を混同しない</h3>
+      <p>「いつも準備中」ネタはブランドを既に知っている人向けの教育リール。新規向け認知とは別物として設計する。</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:44px;">相談の流れ 🎤</h2>
+  <div class="timeline">
+    <div class="step"><div class="n">01</div>Solvé🐶</div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">02</div>きょうこ</div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">03</div>hashug</div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">04</div>chika</div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">05</div>きゃさりん</div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">06</div>misa</div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="n">07</div>クルール</div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="eyebrow">相談者別メモ</div>
+  <h2>7名それぞれの課題とアドバイス</h2>
+
+  <!-- 1 Solvé -->
+  <div class="person">
+    <div class="person-head">
+      <div>
+        <div class="name">01 ／ 人参モチーフのハンドメイドブランド</div>
+        <h3>🐶 Solvé</h3>
+      </div>
+      <span class="status-badge">🔧 ネタ切れ改善中</span>
+    </div>
+    <div class="person-body">
+      <div class="theme">💬 相談テーマ：毎日リールを続けているが「論争ネタ」でしか作れず数字とスキップ率が悪化。1ヶ月シートも見てほしい。</div>
+      <div class="gp-grid">
+        <div class="gp-box good">
+          <div class="label">👍 良かった点</div>
+          <ul>
+            <li>前回の添削会からほぼ毎日リールを継続できている実行力。</li>
+            <li>1ヶ月シートの商品紹介リールの割合は、販売会1週間前として適切。</li>
+            <li>新作について話すリールは「伸びそう」と高評価。</li>
+          </ul>
+        </div>
+        <div class="gp-box improve">
+          <div class="label">💡 改善アドバイス</div>
+          <ul>
+            <li>実体験がなくても「スレッズで見た」「コメントで見た論争」という体裁でネタにしてOK。</li>
+            <li>ネタ探しがしんどい場合は、新規獲得を広告に一部任せる選択肢もあり。</li>
+            <li>ストーリーズで新作ができるまでの苦労・こだわりポイントをもっと見せる。</li>
+            <li>着画をアップで撮り、こだわり（光の反射・素材感など）を語る内容を追加。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="next-action"><span class="tag">🎯 次の一手</span><span>論争ネタは「見聞きした話＋自分の意見」でOKに切り替え／ストーリーズでこだわり語りを1本追加。</span></div>
+    </div>
+  </div>
+
+  <!-- 2 きょうこ -->
+  <div class="person">
+    <div class="person-head">
+      <div>
+        <div class="name">02 ／ ネイルサロン・cuore</div>
+        <h3>💅 きょうこ（nail_cuore_）</h3>
+      </div>
+      <span class="status-badge">✨ 世界観の完成度UP</span>
+    </div>
+    <div class="person-body">
+      <div class="theme">💬 相談テーマ：RMC入会後にフィードを整えたが、キャプションの内容やハイライト構成が適切か客観チェックしてほしい。</div>
+      <div class="gp-grid">
+        <div class="gp-box good">
+          <div class="label">👍 良かった点</div>
+          <ul>
+            <li>フィード全体の世界観がしっかり整っており「めちゃくちゃいい」と高評価。</li>
+            <li>ハイライトの内容・量は現状で十分。</li>
+            <li>過去のテイストが違う投稿を残す判断も間違っていない。</li>
+          </ul>
+        </div>
+        <div class="gp-box improve">
+          <div class="label">💡 改善アドバイス</div>
+          <ul>
+            <li>「いつから買えるか」の情報は全投稿の末尾にテンプレでコピペすると親切。</li>
+            <li>月2回販売会の告知は、月初にカレンダーで両方見せる／個別に告知する、どちらも好みでOK。</li>
+            <li>9月までの空白期間は、過去デザインの再掲や新作のちら見せで埋めてよい。</li>
+            <li>リニューアル後は「ここから世界観が変わった」と明記すれば旧投稿を消さなくても伝わる。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="next-action"><span class="tag">🎯 次の一手</span><span>販売スケジュールのテンプレ文言を全投稿末尾に追加／9月リニューアル告知の三連投稿を作成。</span></div>
+    </div>
+  </div>
+
+  <!-- 3 hashug -->
+  <div class="person">
+    <div class="person-head">
+      <div>
+        <div class="name">03 ／ ウォールデコ・インテリア布小物（初参加）</div>
+        <h3>🧵 hashug ハズハグ｜nozomi</h3>
+      </div>
+      <span class="status-badge">🌱 リニューアル立ち上げ中</span>
+    </div>
+    <div class="person-body">
+      <div class="theme">💬 相談テーマ：ブランド名を「hashug」からリニューアル中。アカウント全体へのアドバイスが欲しい（添削会は初参加）。</div>
+      <div class="gp-grid">
+        <div class="gp-box good">
+          <div class="label">👍 良かった点</div>
+          <ul>
+            <li>色味・雰囲気の統一感がめちゃくちゃ整っていて世界観が伝わる。</li>
+            <li>動画の撮り方自体は上手いと高評価。</li>
+          </ul>
+        </div>
+        <div class="gp-box improve">
+          <div class="label">💡 改善アドバイス</div>
+          <ul>
+            <li>「何屋さんか分からない」のが第一印象。プロフィールに販売品目（ウォールデコ等）を明記する。</li>
+            <li>アカウント名の再設定制限が解除される2週間後に、ブランド名＋販売品目を登録する。</li>
+            <li>商品ラインナップに軸となる呼び名（例：ウォールデコ屋さん）をつけると統一感UP。</li>
+            <li>実際に飾って使っているシーンの写真を増やす。</li>
+            <li>手持ち撮影は揺れが出やすいので、三脚を立てて固定・ズームで撮影する。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="next-action"><span class="tag">🎯 次の一手</span><span>2週間後にプロフィール名を確定／次回撮影から三脚を導入。</span></div>
+    </div>
+  </div>
+
+  <!-- 4 chika -->
+  <div class="person">
+    <div class="person-head">
+      <div>
+        <div class="name">04 ／ 韓国生地の親子お揃い服ブランド</div>
+        <h3>👕 chika</h3>
+      </div>
+      <span class="status-badge">🧭 方向性を模索中</span>
+    </div>
+    <div class="person-body">
+      <div class="theme">💬 相談テーマ：プロフィール文言が何度変えても定まらない。リールの「伸ばす」と「商品紹介」の使い分けが曖昧。男女ラインの訴求方法も相談。</div>
+      <div class="gp-grid">
+        <div class="gp-box good">
+          <div class="label">👍 良かった点</div>
+          <ul>
+            <li>プロフィール離脱率自体は大きな問題になっていない（データで確認済み）。</li>
+            <li>「洋服屋さんなのに洋服を作ってない？」という矛盾フックのリールが実際に一番伸び、フォロワー増にもつながった好例あり。</li>
+            <li>販売会が終わったばかりで商品紹介リールが少ないのは想定通りで問題なし。</li>
+          </ul>
+        </div>
+        <div class="gp-box improve">
+          <div class="label">💡 改善アドバイス</div>
+          <ul>
+            <li>「写真に残したくなるお洋服」と「アニバーサリーフォトで一緒に着たい」はニュアンスが被るため、日常訴求か記念日訴求かどちらかに絞る。</li>
+            <li>商品紹介リールは生地選び・縫製のこだわり（ギャザーの量、切り替え位置など）を具体的に語る。</li>
+            <li>伸ばすリールは販売会の1週間以上前、商品紹介（売る）リールは直前、と時期を分けて設計する。</li>
+            <li>男女ライン同時購入が少ないなら、女児用・男児用で販売会を分けるかブランドを分けて個別訴求した方が売上が上がりやすい。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="next-action"><span class="tag">🎯 次の一手</span><span>プロフィール文言をどちらか一本に統一／次回販売会は男女ラインを分けて訴求。</span></div>
+    </div>
+  </div>
+
+  <!-- 5 きゃさりん -->
+  <div class="person">
+    <div class="person-head">
+      <div>
+        <div class="name">05 ／ ROTONDO（ネイルチップ）</div>
+        <h3>💅 きゃさりん｜ROTONDO</h3>
+      </div>
+      <span class="status-badge">🏆 流れほぼ完璧</span>
+    </div>
+    <div class="person-body">
+      <div class="theme">💬 相談テーマ：9月の1ヶ月シートを確認。リールの「認知」と「商品紹介」のバランス、ストーリーズが販売会に向けて物語になっているかを見てほしい。</div>
+      <div class="gp-grid">
+        <div class="gp-box good">
+          <div class="label">👍 良かった点</div>
+          <ul>
+            <li>計測用チップとデザインチップの販売会間隔を2週間空けた設計は的確。</li>
+            <li>ストーリーズの物語構成が「完璧」「この流れ完璧ですね」と最大級の高評価。</li>
+            <li>「つけてお出かけ」「たくさんの人柄に来た」など共感を呼ぶ投稿ができている。</li>
+          </ul>
+        </div>
+        <div class="gp-box improve">
+          <div class="label">💡 改善アドバイス</div>
+          <ul>
+            <li>9月は新規獲得フェーズのため、認知系リールをあと1〜2本増やす。</li>
+            <li>「いつも準備中」ネタは実は"教育"（既にブランドを知っている人向け）。新規向けの別ネタに差し替える。</li>
+            <li>計測用チップがなぜ必要かを説明する商品紹介リールを追加する。</li>
+            <li>中盤にお客様レビューを1本挟むとさらに良くなる。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="next-action"><span class="tag">🎯 次の一手</span><span>「いつも準備中」ネタを差し替え＋認知リールを1〜2本追加／中盤にレビュー投稿を挿入。</span></div>
+    </div>
+  </div>
+
+  <!-- 6 misa -->
+  <div class="person">
+    <div class="person-head">
+      <div>
+        <div class="name">06 ／ 手描き動物イラスト×雑貨ブランド</div>
+        <h3>🎨 misa_動物イラストレーター</h3>
+      </div>
+      <span class="status-badge">🎨 ブランド軸を整理中</span>
+    </div>
+    <div class="person-body">
+      <div class="theme">💬 相談テーマ：個人イラストアカウントと雑貨販売アカウントの運用に迷い中。8/31にオンラインショップを閉じ販売会方式へ移行予定。マルシェでの接客のような説明がSNSでは伝わりにくい。</div>
+      <div class="gp-grid">
+        <div class="gp-box good">
+          <div class="label">👍 良かった点</div>
+          <ul>
+            <li>用途別（雑貨用／日常＝個人イラスト用）にアカウントを分けた判断は「めちゃくちゃ正解」。</li>
+            <li>お盆頃からリール制作を頑張って始めており、行動が伴っている。</li>
+            <li>今年から商品ラインナップをスカーフ・キーホルダー・トートに絞った判断も良い方向。</li>
+          </ul>
+        </div>
+        <div class="gp-box improve">
+          <div class="label">💡 改善アドバイス</div>
+          <ul>
+            <li>ハイライトに「自己紹介＝何者か」「なぜ販売に至ったか」のストーリーをまとめる。</li>
+            <li>手描きのこだわり（動物園でスケッチ、制作時間など）は両アカウントで発信してOK。マルシェの接客と同じ熱量で根気強く繰り返す。</li>
+            <li>今は販売していない過去商品の投稿も、再販希望の声や商品開発の参考になるため消さずに残す。</li>
+            <li>販売会ごとに新作を用意する必要はない。制作スピードに無理のない範囲でOK。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="next-action"><span class="tag">🎯 次の一手</span><span>ハイライトに「自己紹介ストーリー」を新設／制作工程を語るリールを両アカウントで継続投稿。</span></div>
+    </div>
+  </div>
+
+  <!-- 7 クルール -->
+  <div class="person">
+    <div class="person-head">
+      <div>
+        <div class="name">07 ／ couleur0312（刺繍リボン・シンプル服飾雑貨）</div>
+        <h3>🎀 クルール</h3>
+      </div>
+      <span class="status-badge">📸 編集力を強化中</span>
+    </div>
+    <div class="person-body">
+      <div class="theme">💬 相談テーマ：RMC入会後の投稿でフォロワーが22人増えたが最近アンケートの反応が薄い。明日から販売会のため、リール内容とママ向け訴求ができているか確認したい。</div>
+      <div class="gp-grid">
+        <div class="gp-box good">
+          <div class="label">👍 良かった点</div>
+          <ul>
+            <li>シンプルで上品な世界観がしっかり伝わっている（モノトーン系ファッション好きに響く印象）。</li>
+            <li>子どもと一緒のシーンをリールにはすでに取り入れている。</li>
+            <li>リールの画角・見せ方の構成自体は問題なし。</li>
+          </ul>
+        </div>
+        <div class="gp-box improve">
+          <div class="label">💡 改善アドバイス</div>
+          <ul>
+            <li>ターゲットが「ママ向け」であることが伝わりにくいので、遊んでいる様子や手をつなぐ後ろ姿などをもっと見せる。</li>
+            <li>「なぜママ向けか」を言語化する一言（例：忙しくてもパチッとつけるだけでお洒落に見える）を添える。</li>
+            <li>フィードでの子ども登場は増やしすぎず、並びの中で2投稿程度に調整する。</li>
+            <li>刺繍・リボンのディテールをアップで見せる投稿を、柄違いで定期的に発信する。</li>
+            <li>撮って出しのままだと白飛びして見えるため、露出・彩度を編集してから投稿する。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="next-action"><span class="tag">🎯 次の一手</span><span>「ママ向け」を言語化した一言をキャプションに追加／動画の露出・彩度編集を導入。</span></div>
+    </div>
+  </div>
+
+</section>
+
+<section id="checklist">
+  <div class="eyebrow">次回までに</div>
+  <h2>全員共通・準備チェックリスト ✅</h2>
+  <ul class="checklist">
+    <li><span class="box"></span><span>プロフィールで「何を販売しているブランドか」が一言で伝わるか見直す</span></li>
+    <li><span class="box"></span><span>販売スケジュールのテンプレ文言を投稿末尾に統一して入れる</span></li>
+    <li><span class="box"></span><span>三脚を使い、露出・彩度を編集してから動画を投稿する</span></li>
+    <li><span class="box"></span><span>こだわり・制作の裏側を語るリールを最低1本用意する</span></li>
+    <li><span class="box"></span><span>「認知」「教育」「商品紹介」のどのリールかを意識して比率を決める</span></li>
+    <li><span class="box"></span><span>レビューやお客様の声を月1〜2回投稿に差し込む</span></li>
+  </ul>
+</section>
+
+<footer>
+  Source：しほ売上別添削会【0〜5万円・5〜10万円クラス】文字おこし／2026.08.28 収録
+</footer>
+
+</body>
+</html>

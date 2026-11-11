@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>添削会まとめ | 8ブランドの相談メモ</title>
+<style>
+  :root{
+    --bg:#fbf6f3;
+    --card:#ffffff;
+    --ink:#3a2e2c;
+    --sub:#7c6d69;
+    --accent:#d98c9a;
+    --accent-soft:#f6dfe4;
+    --line:#ece1de;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Hiragino Sans","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.8;
+  }
+  a{color:inherit;}
+  .hero{
+    background:linear-gradient(135deg,#f3d9de 0%,#f8ece7 60%,#f3ede6 100%);
+    padding:64px 24px 48px;
+    text-align:center;
+  }
+  .hero .date{
+    letter-spacing:.08em;
+    font-size:13px;
+    color:var(--sub);
+    margin-bottom:12px;
+  }
+  .hero h1{
+    font-size:clamp(28px,5vw,44px);
+    margin:0 0 16px;
+    line-height:1.5;
+  }
+  .hero p.lead{
+    max-width:640px;
+    margin:0 auto;
+    color:var(--sub);
+    font-size:15px;
+  }
+  nav{
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    padding:18px 12px;
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    font-size:14px;
+    flex-wrap:wrap;
+    z-index:10;
+  }
+  nav a{
+    text-decoration:none;
+    color:var(--sub);
+    padding:4px 2px;
+    border-bottom:2px solid transparent;
+  }
+  nav a:hover{border-bottom-color:var(--accent);color:var(--ink);}
+
+  section{
+    max-width:840px;
+    margin:0 auto;
+    padding:56px 24px;
+  }
+  section + section{border-top:1px solid var(--line);}
+  .eyebrow{
+    font-size:13px;
+    color:var(--accent);
+    letter-spacing:.1em;
+    margin-bottom:8px;
+  }
+  h2{font-size:24px;margin:0 0 28px;}
+  .conclusion-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+  }
+  .conclusion-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+  }
+  .conclusion-card .num{
+    font-size:13px;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .conclusion-card h3{margin:0 0 8px;font-size:16px;}
+  .conclusion-card p{margin:0;color:var(--sub);font-size:14px;}
+
+  .rules{list-style:none;margin:32px 0 0;padding:0;}
+  .rules li{
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .rules li:first-child{border-top:none;}
+  .rules .n{
+    flex:0 0 auto;
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;
+  }
+
+  .case{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 28px;
+    margin-bottom:20px;
+  }
+  .case .brand{
+    font-size:13px;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .case h3{margin:0 0 8px;font-size:17px;}
+  .case p.desc{color:var(--sub);font-size:14px;margin:0 0 14px;}
+  .case ul{margin:0;padding-left:20px;font-size:14px;}
+  .case li{margin-bottom:6px;}
+
+  .checklist{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  .checklist li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 16px;
+    font-size:14.5px;
+  }
+  .checklist .box{
+    flex:0 0 auto;
+    width:18px;height:18px;
+    border-radius:5px;
+    border:2px solid var(--accent);
+    margin-top:2px;
+  }
+
+  .templates{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+  .template-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+  }
+  .template-card .label{
+    font-size:12.5px;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .template-card p{
+    margin:0;
+    font-size:14px;
+    font-style:italic;
+    color:var(--ink);
+  }
+
+  footer{
+    text-align:center;
+    padding:36px 24px 56px;
+    font-size:12.5px;
+    color:var(--sub);
+  }
+  footer a{color:var(--accent);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="date">2026.07.30 添削会まとめ</div>
+  <h1>いい商品は、伝え方ひとつで<br>届き方が変わる。</h1>
+  <p class="lead">Instagram添削会で出た8ブランドの相談を、認知とリール比率、購入導線、写真・世界観の3つの切り口で整理しました。</p>
+</div>
+
+<nav>
+  <a href="#summary">要点</a>
+  <a href="#cases">相談別</a>
+  <a href="#checklist">チェック</a>
+  <a href="#templates">投稿例</a>
+</nav>
+
+<section id="summary">
+  <div class="eyebrow">今日の結論</div>
+  <h2>「フェーズ」と「ハードル」を見誤らないこと。</h2>
+  <div class="conclusion-grid">
+    <div class="conclusion-card">
+      <div class="num">01</div>
+      <h3>フェーズでリール比率を変える</h3>
+      <p>新規獲得中なら認知系を7〜8割、リピーター重視なら3割程度でOK。今のフェーズを言語化してから比率を決める。</p>
+    </div>
+    <div class="conclusion-card">
+      <div class="num">02</div>
+      <h3>続かないなら、ハードルを下げる</h3>
+      <p>投稿頻度・新作点数・販売会回数のどれか1つを減らすだけで、告知の遅れや息切れは防げる。</p>
+    </div>
+    <div class="conclusion-card">
+      <div class="num">03</div>
+      <h3>写真と導線は「伝わる」が基準</h3>
+      <p>世界観の統一感、購入までの説明、こだわりの言語化があってはじめて商品の価値は届く。</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:48px;">8ブランド共通の打ち手</h2>
+  <ul class="rules">
+    <li><span class="n">1</span><span>販売会の告知は開催の1〜2週間以上前に着手し、検討期間を長く取る。</span></li>
+    <li><span class="n">2</span><span>「1点でも売れたらOK」のスモールステップで、成果より継続を優先する。</span></li>
+    <li><span class="n">3</span><span>フィードは正面カットに偏らず、アップ・引き・並べのバリエーションを揃える。</span></li>
+    <li><span class="n">4</span><span>購入導線が複雑な商品は、ブログやQ&amp;Aで「まず読んでほしい」動線を作る。</span></li>
+    <li><span class="n">5</span><span>広告用リールは説明調、オーガニック用は煽り・フックを効かせると使い分ける。</span></li>
+  </ul>
+</section>
+
+<section id="cases">
+  <div class="eyebrow">相談者別メモ</div>
+  <h2>それぞれの課題と改善案</h2>
+
+  <div class="case">
+    <div class="brand">sugary sweety / シュガーリィスウィーティ（韓国生地スマホショルダー）</div>
+    <h3>認知獲得の比率とタイミングが最適化できていない</h3>
+    <p class="desc">新規フェーズなのに認知系リールが少なく、フィードの世界観も韓国風から離れ気味。</p>
+    <ul>
+      <li>8/7頃までは認知系リールを7〜8割の比率に。新規フェーズは人物・世界観訴求を厚めにする。</li>
+      <li>販売会告知リールを8月頭に1本差し込み、早めに存在を知らせて検討期間を作る。</li>
+      <li>閲覧率を上げる長文一枚のストーリーズを2箇所ほど挟む。</li>
+      <li>背景・洋服・小物を韓国風に寄せ、光を柔らかくして統一感を出す。</li>
+    </ul>
+  </div>
+
+  <div class="case">
+    <div class="brand">ドリーミィガール（縫製アクセサリー・5,000円台）</div>
+    <h3>訴求開始が直前になり、後半販売会の売上がゼロ</h3>
+    <p class="desc">新作5点の制作に時間がかかり、告知が販売会の3日前にずれ込んだ。</p>
+    <ul>
+      <li>価格は下げず維持。訴求が遅れる根本原因（制作時間・シナリオの難易度）を特定する。</li>
+      <li>販売会回数・新作点数・投稿頻度のいずれか1つでハードルを下げる。</li>
+      <li>「1点売れたらOK」から始め、販売会ごとに少しずつ目標を上げる。</li>
+    </ul>
+  </div>
+
+  <div class="case">
+    <div class="brand">香織 / Atelier K（ピアス）</div>
+    <h3>ベネフィットリールの具体シーンが弱い</h3>
+    <p class="desc">「ちょっとお出かけ」の場面が抽象的で、つけたくなる瞬間が想像しにくい。</p>
+    <ul>
+      <li>コンビニ・犬の散歩など、具体的なシーンを描写する。</li>
+      <li>ピアスが小さく写る悩みは引きの画でも十分。アップと引きを組み合わせる。</li>
+      <li>PR期間の残り2週間は、認知延長・定番訴求・レビュー・ノーナレ動画など柔軟に選んでよい。</li>
+    </ul>
+  </div>
+
+  <div class="case">
+    <div class="brand">myun. / Yuka（ビーズ編みトレカケース）</div>
+    <h3>プロフィール文だけでは世界観が伝わらない</h3>
+    <p class="desc">フィードから推し活感は伝わるが、プロフィールが商品説明どまりになっている。</p>
+    <ul>
+      <li>「一緒にお出かけ」「持ち歩く」「生活の一部」など体験を表すワードを1〜2行目に追加する。</li>
+      <li>持ち歩いた後の気持ちや未来を言語化して補足する。</li>
+    </ul>
+  </div>
+
+  <div class="case">
+    <div class="brand">きゃさりん / ROTONDO（ネイルチップ）</div>
+    <h3>購入導線の分かりにくさで購入率0.49%</h3>
+    <p class="desc">計測用チップが必須という仕組みが伝わらず、流入217件に対し購入1件にとどまった。</p>
+    <ul>
+      <li>購入の流れを説明するブログ記事とQ&amp;Aページを作成し、最後まで読ませてからリンクへ誘導する。</li>
+      <li>「初めての方はこちら」「事前購入必須」の表示で導線を作る。</li>
+      <li>広告用リールは煽り文句を避け「新作できました」など説明調に。煽り文句はオーガニック向き。</li>
+      <li>限定枠を絞り、計測チップ発送時に次の手順を同梱して離脱を防ぐ。</li>
+    </ul>
+  </div>
+
+  <div class="case">
+    <div class="brand">たいぞー（お香）</div>
+    <h3>月商5万円台で頭打ち</h3>
+    <p class="desc">直近の販売会は完売できているが、次の一手に自信が持てない。</p>
+    <ul>
+      <li>完売できているなら、枠数を増やすか値上げして規模を拡大する段階。</li>
+      <li>単品商品同士のセット販売で客単価を上げる（過去に売れた実例あり）。</li>
+      <li>季節限定の香りなど、付加価値をプラスして差別化する。</li>
+    </ul>
+  </div>
+
+  <div class="case">
+    <div class="brand">ruru（ドールアクセサリー）</div>
+    <h3>「ドール愛好家アカウント」に見えてしまう</h3>
+    <p class="desc">全カットにドールが写り込み、アクセサリー作家として認識されにくい。</p>
+    <ul>
+      <li>アクセサリー単体・アップ・並べたカットなど写真のバリエーションを増やす。</li>
+      <li>Pinterestでピアス・イヤリングの構図や背景づかいを研究する。</li>
+      <li>広告用リールは、つける理由とつけた後の気持ちを語り、最後に販売会告知で締める構成にする。</li>
+    </ul>
+  </div>
+
+  <div class="case">
+    <div class="brand">rinoa / Ri_no.（アクセサリー）</div>
+    <h3>初の7万円台突破、次は購入率を上げたい</h3>
+    <p class="desc">インスタ流入792回に対し購入13件（購入率約0.6%）。</p>
+    <ul>
+      <li>認知系リールは継続しつつ、購入率向上のための「教育」コンテンツを強化する。</li>
+      <li>こだわり・工程を語るリールと、週1目安のレビュー紹介を追加する。</li>
+      <li>一度伸びてもすぐリピーター施策に移らず、新規獲得フェーズをもう1周してから切り替える。</li>
+      <li>デザイン重視か、距離の近い温かみ重視か、ブランドの方向性を先に決めてから世界観を統一する。</li>
+    </ul>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="eyebrow">次の販売会前</div>
+  <h2>準備チェックリスト</h2>
+  <ul class="checklist">
+    <li><span class="box"></span><span>新規／リピーター、どちらのフェーズかを確認し、リール比率を決める</span></li>
+    <li><span class="box"></span><span>販売会告知は開催の1〜2週間以上前に着手する</span></li>
+    <li><span class="box"></span><span>制作・投稿のハードルを下げる代替案を1つ用意しておく</span></li>
+    <li><span class="box"></span><span>フィード写真はアップ／引き／並べのバリエーションを揃える</span></li>
+    <li><span class="box"></span><span>購入導線（ブログ・Q&amp;A・オプション設定）をお客様目線で確認する</span></li>
+    <li><span class="box"></span><span>広告用とオーガニック用でリールの冒頭の言葉遣いを使い分ける</span></li>
+    <li><span class="box"></span><span>週1目安でレビューやこだわりを紹介する投稿を入れる</span></li>
+    <li><span class="box"></span><span>セット販売や限定枠の絞り込みなど、客単価を上げる施策を1つ試す</span></li>
+  </ul>
+</section>
+
+<section id="templates">
+  <div class="eyebrow">そのまま使える</div>
+  <h2>投稿・ストーリーズ文例</h2>
+  <div class="templates">
+    <div class="template-card">
+      <div class="label">認知リールの冒頭</div>
+      <p>「コンビニに行くだけの日も、なんかいいことある気がする」そんな気分にしてくれるアクセサリーです。</p>
+    </div>
+    <div class="template-card">
+      <div class="label">販売会の告知</div>
+      <p>◯月◯日から販売会をはじめます。気になっている方はフォローしてお待ちください。</p>
+    </div>
+    <div class="template-card">
+      <div class="label">ハードルを下げる目標設定</div>
+      <p>今月は「1点売れたらOK」からスタート。焦らずスモールステップで進めます。</p>
+    </div>
+    <div class="template-card">
+      <div class="label">購入導線ブログの冒頭</div>
+      <p>はじめてご購入いただく方は、まずこちらを読んでから進んでください。</p>
+    </div>
+    <div class="template-card">
+      <div class="label">レビューの差し込み</div>
+      <p>「想像以上に可愛くてびっくりしました」というお声をいただきました。</p>
+    </div>
+    <div class="template-card">
+      <div class="label">こだわりを語るリール</div>
+      <p>この奥行きときらめきが出るまで、色を何度も重ねています。光の当たり方で表情が変わるのが好きです。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Source: 添削会 文字おこし（transcript.txt）／2026.07.30 収録
+</footer>
+
+</body>
+</html>
